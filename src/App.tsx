@@ -3,13 +3,13 @@ import Form from "./components/Form";
 import Logo from "./components/Logo";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
-import { Items } from "./components/PackingList";
+import { itemInterface } from "./interfaces";
 import { useState } from "react";
 
 export default function App() {
-  const [itemsArray, setItemsArray] = useState<Items[]>([]);
+  const [itemsArray, setItemsArray] = useState<itemInterface[]>([]);
 
-  const setItemArray = (itemObj: Items) => {
+  const setItemArray = (itemObj: itemInterface) => {
     setItemsArray([...itemsArray, itemObj]);
   };
   return (

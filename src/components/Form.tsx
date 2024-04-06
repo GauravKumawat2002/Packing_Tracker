@@ -1,28 +1,26 @@
 import { useState } from "react";
-import { Items } from "./PackingList";
+import { itemInterface, FormProps } from "../interfaces";
 
-export default function Form({
-  setItemArray,
-}: {
-  setItemArray: (itemObj: Items) => void;
-}) {
+export default function Form({ setItemArray }: FormProps) {
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState(1);
+
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault(); // Prevents the default action of the form
-    if (!item) return; // If the item is empty, return (do nothing (guard clause))
 
-    const newItem: Items = {
+    if (!item) return; // If the item is empty, return (do nothing (guard clause))
+    const newItem: itemInterface = {
       description: item,
       quantity: quantity,
       packed: false,
       id: Date.now(),
     };
 
-    setItemArray(newItem);
     console.log(newItem);
+
     setItem("");
     setQuantity(1);
+    setItemArray(newItem);
   }
 
   return (
