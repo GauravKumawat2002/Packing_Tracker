@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { items } from "./PackingList";
-export default function Form(props) {
-  const { setItemArray } = props;
+export default function Form({
+  setItemArray,
+}: {
+  setItemArray: (itemObj: items) => void;
+}) {
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState(1);
   function handleSubmit(event: React.FormEvent) {

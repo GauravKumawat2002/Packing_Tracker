@@ -16,11 +16,11 @@ export interface items {
 //   //   { id: 6, description: " bra  ", quantity: 2, packed: false },
 // ];
 
-export default function PackingList(items:items[]) {
+export default function PackingList({ itemsArray }: { itemsArray: items[] }) {
   return (
     <div className="list">
       <ul>
-        {items.map((item) => (
+        {itemsArray.map((item) => (
           <Item {...item} key={item.id} />
         ))}
       </ul>

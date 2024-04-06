@@ -14,8 +14,8 @@ export default function App() {
   return (
     <div className="app">
       <Logo />
-      <Form props={setItemArray} />
-      <PackingList {...itemsArray} />
+      <Form setItemsArray={setItemArray} />
+      <PackingList itemsArray={itemsArray} />
       <Stats />
     </div>
   );
