@@ -1,7 +1,7 @@
-import { items } from "./PackingList";
+import { Items } from "./PackingList";
 import { useState } from "react";
 
-export default function Item({ id, quantity, description }: items) {
+export default function Item({ id, quantity, description }: Items) {
   const [isPacked, setIsPacked] = useState(false);
 
   return (

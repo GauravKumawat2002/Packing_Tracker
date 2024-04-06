@@ -1,26 +1,30 @@
 import { useState } from "react";
-import { items } from "./PackingList";
+import { Items } from "./PackingList";
+
 export default function Form({
   setItemArray,
 }: {
-  setItemArray: (itemObj: items) => void;
+  setItemArray: (itemObj: Items) => void;
 }) {
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState(1);
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault(); // Prevents the default action of the form
     if (!item) return; // If the item is empty, return (do nothing (guard clause))
-    const newItem: items = {
+
+    const newItem: Items = {
       description: item,
       quantity: quantity,
       packed: false,
       id: Date.now(),
     };
+
     setItemArray(newItem);
     console.log(newItem);
     setItem("");
     setQuantity(1);
   }
+
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your 😍 trip?</h3>

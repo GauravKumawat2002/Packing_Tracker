@@ -1,6 +1,6 @@
 import Item from "./Item";
 
-export interface items {
+export interface Items {
   id: number;
   description: string;
   quantity: number;
@@ -16,7 +16,11 @@ export interface items {
 //   //   { id: 6, description: " bra  ", quantity: 2, packed: false },
 // ];
 
-export default function PackingList({ itemsArray }: { itemsArray: items[] }) {
+interface PackageListProps {
+  itemsArray: Items[];
+}
+
+export default function PackingList({ itemsArray }: PackageListProps) {
   return (
     <div className="list">
       <ul>
