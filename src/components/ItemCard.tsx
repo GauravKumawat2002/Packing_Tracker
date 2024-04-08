@@ -1,10 +1,11 @@
-import { items } from "./PackingList";
+import { itemInterface } from "../interfaces";
 import { useState } from "react";
 
-export default function Item({ id, quantity, description }: items) {
+export default function ItemCard({ id, quantity, description }: itemInterface) {
   const [isPacked, setIsPacked] = useState(false);
+  const [discarded, setDiscarded] = useState(false);
 
-  return (
+  return !discarded ? (
     <li key={id}>
       <input
         type="checkbox"
@@ -21,7 +22,7 @@ export default function Item({ id, quantity, description }: items) {
         {quantity} {description}
       </span>
 
-      <button>❌</button>
+      <button onClick={() => setDiscarded(!discarded)}>❌</button>
     </li>
-  );
+  ) : null;
 }
