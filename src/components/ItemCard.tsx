@@ -3,8 +3,9 @@ import { useState } from "react";
 
 export default function ItemCard({ id, quantity, description }: itemInterface) {
   const [isPacked, setIsPacked] = useState(false);
+  const [discarded, setDiscarded] = useState(false);
 
-  return (
+  return !discarded ? (
     <li key={id}>
       <input
         type="checkbox"
@@ -21,7 +22,7 @@ export default function ItemCard({ id, quantity, description }: itemInterface) {
         {quantity} {description}
       </span>
 
-      <button>❌</button>
+      <button onClick={() => setDiscarded(!discarded)}>❌</button>
     </li>
-  );
+  ) : null;
 }
