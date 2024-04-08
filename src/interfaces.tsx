@@ -10,4 +10,5 @@ interface PackageListProps {
 interface FormProps {
   setItemArray: (itemObj: itemInterface) => void;
 }
-export type { itemInterface, PackageListProps, FormProps };
+type ItemsArrayModify = ((i: number) => void) | null;
+export type { itemInterface, PackageListProps, FormProps, ItemsArrayModify };
