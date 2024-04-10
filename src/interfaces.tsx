@@ -6,7 +6,6 @@ export interface itemInterface {
 }
 interface FormProps {
   setItemArray: (itemObj: itemInterface) => void;
-  packedItem: boolean;
 }
 interface PackageListProps {
   itemsArray: itemInterface[];

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { itemInterface, FormProps } from "../interfaces";
 
-export default function Form({ setItemArray, packedItem }: FormProps) {
+export default function Form({ setItemArray }: FormProps) {
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState(1);
 
@@ -12,10 +12,10 @@ export default function Form({ setItemArray, packedItem }: FormProps) {
     const newItem: itemInterface = {
       description: item,
       quantity: quantity,
-      packed: packedItem,
+      packed: false,
       id: Date.now(),
     };
-    console.log(newItem);
+
     setItem("");
     setQuantity(1);
     setItemArray(newItem);

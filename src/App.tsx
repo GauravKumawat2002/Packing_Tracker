@@ -5,34 +5,30 @@ import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 import { itemInterface } from "./interfaces";
 import { useState } from "react";
-import { ItemArrayModificationContext, SetPackedItemContext } from "./context";
+import { ItemArrayModificationContext } from "./context";
 
 export default function App() {
   const [itemsArray, setItemsArray] = useState<itemInterface[]>([]);
-  const [packedItem, setPackedItem] = useState<boolean>(false);
-  const togglePackedItem = () => setPackedItem(!packedItem);
 
   const setItemArray = (itemObj: itemInterface) => {
     setItemsArray([...itemsArray, itemObj]);
-    // console.log(`itemsArray when form is filled =`, itemsArray);
+    console.log(`itemsArray when form is filled =`, itemsArray);
   };
 
   const modifyItemsArray = (itemIndex: number) => {
     const newItemsArray = itemsArray.filter((item) => item.id !== itemIndex);
-    // console.log(`Modified itemsArray state = `, newItemsArray);
-    // console.log(`itemsArray when Cross button is clicked =`, itemsArray);
+    console.log(`Modified itemsArray state = `, newItemsArray);
+    console.log(`itemsArray when Cross button is clicked =`, itemsArray);
     setItemsArray(newItemsArray);
   };
 
   return (
     <div className="app">
       <Logo />
-      <Form setItemArray={setItemArray} packedItem={packedItem} />
+      <Form setItemArray={setItemArray} />
 
       <ItemArrayModificationContext.Provider value={modifyItemsArray}>
-        <SetPackedItemContext.Provider value={togglePackedItem}>
-          <PackingList itemsArray={itemsArray} />
-        </SetPackedItemContext.Provider>
+        <PackingList itemsArray={itemsArray} />
       </ItemArrayModificationContext.Provider>
 
       <Stats itemsArray={itemsArray} />
