@@ -1,6 +1,6 @@
 import { itemInterface } from "../interfaces";
 import { useContext, useState } from "react";
-import { ItemArrayModificationContext } from "../App";
+import { ItemArrayModificationContext } from "../context";
 export default function ItemCard({ id, quantity, description }: itemInterface) {
   const [isPacked, setIsPacked] = useState(false);
   const [discarded, setDiscarded] = useState(false);
