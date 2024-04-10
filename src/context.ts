@@ -1,5 +1,10 @@
 import { ItemsArrayModify } from "./interfaces";
 import { createContext } from "react";
 
-export const ItemArrayModificationContext =
-  createContext<ItemsArrayModify>(null);
+const ItemArrayModificationContext = createContext<ItemsArrayModify>(null);
+
+const SetPackedItemContext = createContext<((val: boolean) => void) | null>(
+  null
+);
+
+export { ItemArrayModificationContext, SetPackedItemContext };

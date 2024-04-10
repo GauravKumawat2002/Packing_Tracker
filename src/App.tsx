@@ -5,36 +5,42 @@ import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 import { itemInterface } from "./interfaces";
 import { useState } from "react";
-import { ItemArrayModificationContext } from "./context";
+import { ItemArrayModificationContext, SetPackedItemContext } from "./context";
 
 export default function App() {
   const [itemsArray, setItemsArray] = useState<itemInterface[]>([]);
-
-  const modifyItemsArray = (itemIndex: number) => {
-    const newItemsArray = itemsArray.filter((item) => item.id !== itemIndex);
-    console.log(`Modified itemsArray state = `, newItemsArray);
-    console.log(`itemsArray when Cross button is clicked =`, itemsArray);
-    setItemsArray(newItemsArray);
-  };
+  const [packedItem, setPackedItem] = useState<boolean>(false);
+  const togglePackedItem = () => setPackedItem(!packedItem);
 
   const setItemArray = (itemObj: itemInterface) => {
     setItemsArray([...itemsArray, itemObj]);
-    console.log(`itemsArray when form is filled =`, itemsArray);
+    // console.log(`itemsArray when form is filled =`, itemsArray);
+  };
+
+  const modifyItemsArray = (itemIndex: number) => {
+    const newItemsArray = itemsArray.filter((item) => item.id !== itemIndex);
+    // console.log(`Modified itemsArray state = `, newItemsArray);
+    // console.log(`itemsArray when Cross button is clicked =`, itemsArray);
+    setItemsArray(newItemsArray);
   };
 
   return (
     <div className="app">
       <Logo />
-      <Form setItemArray={setItemArray} />
+      <Form setItemArray={setItemArray} packedItem={packedItem} />
 
       <ItemArrayModificationContext.Provider value={modifyItemsArray}>
-        <PackingList itemsArray={itemsArray} />
+        <SetPackedItemContext.Provider value={togglePackedItem}>
+          <PackingList itemsArray={itemsArray} />
+        </SetPackedItemContext.Provider>
       </ItemArrayModificationContext.Provider>
 
-      <Stats />
+      <Stats itemsArray={itemsArray} />
     </div>
   );
 }
+
+//  onChange={() => modifyPackingStatus(count)}
 
 // Here I need to make a function that pops-out the last element i.e., (items object) from the "itemsArray" & also sets the display of itemCard to null -->
 // This all should happen only when the cross button is clicked.
