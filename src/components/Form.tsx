@@ -16,8 +16,6 @@ export default function Form({ setItemArray }: FormProps) {
       id: Date.now(),
     };
 
-    console.log(newItem);
-
     setItem("");
     setQuantity(1);
     setItemArray(newItem);

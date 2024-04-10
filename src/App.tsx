@@ -3,26 +3,25 @@ import Form from "./components/Form";
 import Logo from "./components/Logo";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
-import { itemInterface, ItemsArrayModify } from "./interfaces";
-import { createContext, useState } from "react";
-
-export const ItemArrayModificationContext =
-  createContext<ItemsArrayModify>(null);
+import { itemInterface } from "./interfaces";
+import { useState } from "react";
+import { ItemArrayModificationContext } from "./context";
 
 export default function App() {
   const [itemsArray, setItemsArray] = useState<itemInterface[]>([]);
 
   const modifyItemsArray = (itemIndex: number) => {
-    const indexToBeDeleted = itemsArray.findIndex(
-      (item) => itemIndex === item.id
-    );
-    itemsArray.splice(indexToBeDeleted, 1);
+    const newItemsArray = itemsArray.filter((item) => item.id !== itemIndex);
+    console.log(`Modified itemsArray state = `, newItemsArray);
+    console.log(`itemsArray when Cross button is clicked =`, itemsArray);
+    setItemsArray(newItemsArray);
   };
 
   const setItemArray = (itemObj: itemInterface) => {
     setItemsArray([...itemsArray, itemObj]);
+    console.log(`itemsArray when form is filled =`, itemsArray);
   };
-  console.log(itemsArray);
+
   return (
     <div className="app">
       <Logo />
