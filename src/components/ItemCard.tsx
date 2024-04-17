@@ -1,28 +1,34 @@
 import { itemInterface } from "../interfaces";
 import { useContext, useState } from "react";
-import { ItemArrayModificationContext } from "../context";
-export default function ItemCard({ id, quantity, description }: itemInterface) {
-  const [isPacked, setIsPacked] = useState(false);
-  const [discarded, setDiscarded] = useState(false);
+import { DeleteItemContext, HandleCheckedContext } from "../context";
 
-  const modifyArrayItems = useContext(ItemArrayModificationContext);
+export default function ItemCard({
+  id,
+  quantity,
+  description,
+  packed,
+}: itemInterface) {
+  const [discarded, setDiscarded] = useState(false);
+  const deleteItem = useContext(DeleteItemContext);
+  const handleChecked = useContext(HandleCheckedContext);
   const handleDelete = () => {
-    if (modifyArrayItems) {
-      setDiscarded(!discarded); // Toggling the discard state
-      modifyArrayItems(id); // Passing the id directly
+    if (deleteItem !== null) {
+      setDiscarded(!discarded); // Removes the item from the UI
+      deleteItem(id); // Passing the id directly
+    }
+  };
+  const handleCheck = () => {
+    if (handleChecked !== null) {
+      handleChecked(id);
     }
   };
 
   return !discarded ? (
     <li key={id}>
-      <input
-        type="checkbox"
-        checked={isPacked}
-        onChange={() => setIsPacked(!isPacked)}
-      />
+      <input type="checkbox" checked={packed} onChange={handleCheck} />
       <span
         style={
-          isPacked
+          packed
             ? { textDecoration: "line-through" }
             : { textDecoration: "none" }
         }

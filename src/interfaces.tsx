@@ -1,4 +1,5 @@
-export interface itemInterface {
+/* eslint-disable react-refresh/only-export-components */
+interface itemInterface {
   id: number;
   description: string;
   quantity: number;
@@ -14,6 +15,14 @@ interface StatsProps {
   itemsArray: itemInterface[];
 }
 
-type ItemsArrayModify = ((i: number) => void) | null;
+type deleteItem = ((i: number) => void) | null;
+type handleChecked = ((i: number) => void) | null;
 
-export type { FormProps, PackageListProps, StatsProps, ItemsArrayModify };
+export type {
+  itemInterface,
+  FormProps,
+  PackageListProps,
+  StatsProps,
+  deleteItem,
+  handleChecked,
+};

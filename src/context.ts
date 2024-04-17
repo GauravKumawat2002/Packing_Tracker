@@ -1,5 +1,9 @@
-import { ItemsArrayModify } from "./interfaces";
+import { deleteItem, handleChecked } from "./interfaces";
 import { createContext } from "react";
 
-export const ItemArrayModificationContext =
-  createContext<ItemsArrayModify>(null);
+// Creating the context
+const DeleteItemContext = createContext<deleteItem>(null);
+const HandleCheckedContext = createContext<handleChecked>(null);
+
+// Exporting the context
+export { DeleteItemContext, HandleCheckedContext };
