@@ -3,7 +3,11 @@ import { PackageListProps } from "../interfaces";
 import { useContext, useState } from "react";
 import { DeleteItemContext } from "../context";
 export default function PackingList({ itemsArray }: PackageListProps) {
-  const { emptyItem } = useContext(DeleteItemContext);
+  const deleteItemContext = useContext(DeleteItemContext);
+  if (deleteItemContext === null) {
+    throw new Error("DeleteItemContext is null");
+  }
+  const { emptyItem } = deleteItemContext;
   const [selectedOption, setSelectedOption] = useState("packed");
   let sortedItems;
   if (selectedOption === "input") sortedItems = itemsArray;
