@@ -15,6 +15,10 @@ export default function App() {
   const deleteItem = (itemIndex: number) => {
     setItemsArray(itemsArray.filter((item) => item.id !== itemIndex));
   };
+  const emptyItem = () => {
+    setItemsArray([]);
+  };
+
   function handleChecked(id: number) {
     /*============= This is how you change a value in an object ================*/
     /*============= which is inside an array ================*/
@@ -30,7 +34,7 @@ export default function App() {
       <Logo />
       <Form setItemArray={addItems} />
 
-      <DeleteItemContext.Provider value={deleteItem}>
+      <DeleteItemContext.Provider value={{ deleteItem, emptyItem }}>
         <HandleCheckedContext.Provider value={handleChecked}>
           <PackingList itemsArray={itemsArray} />
         </HandleCheckedContext.Provider>

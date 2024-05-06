@@ -9,7 +9,7 @@ export default function ItemCard({
   packed,
 }: itemInterface) {
   const [discarded, setDiscarded] = useState(false);
-  const deleteItem = useContext(DeleteItemContext);
+  const { deleteItem } = useContext(DeleteItemContext);
   const handleChecked = useContext(HandleCheckedContext);
   const handleDelete = () => {
     if (deleteItem !== null) {

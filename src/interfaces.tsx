@@ -15,7 +15,10 @@ interface StatsProps {
   itemsArray: itemInterface[];
 }
 
-type deleteItem = ((i: number) => void) | null;
+type deleteItem = {
+  deleteItem: (i: number) => void;
+  emptyItem: () => void;
+};
 type handleChecked = ((i: number) => void) | null;
 
 export type {
